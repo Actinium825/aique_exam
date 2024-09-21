@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
+import 'package:qube_project/utils/styles.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,11 +28,11 @@ class MyApp extends StatelessWidget {
                       Icons.search,
                       color: Colors.white,
                     ),
-                    label: const Text(searchBarHintText),
                     contentPadding: EdgeInsets.zero,
                     alignLabelWithHint: false,
                     floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+                    labelText: searchBarHintText,
+                    labelStyle: TextStyles.xxs.copyWith(color: Colors.white.withOpacity(0.5)),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(searchBarRadius),
                       borderSide: const BorderSide(color: Colors.white10),
