@@ -32,6 +32,9 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
   /// Switch to Step 2 Tab after pressing 'Go To Step 2' on a qube item
   void _onNavigateToStep2() => _tabController.animateTo(1);
 
+  /// Navigate back to Step 1 when pressing back while on Step 2
+  void _onPopInvoked() => _tabController.animateTo(0);
+
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(tabBarRadius);
@@ -51,33 +54,37 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
                 final isStep1 = _tabController.index == 0;
                 return AbsorbPointer(
                   absorbing: isStep1,
-                  child: TabBar(
-                    splashBorderRadius: borderRadius,
-                    controller: _tabController,
-                    dividerColor: Colors.transparent,
-                    indicator: BoxDecoration(
-                      borderRadius: borderRadius,
-                      gradient: selectedTabGradient,
+                  child: PopScope(
+                    canPop: isStep1,
+                    onPopInvokedWithResult: (_, __) => _onPopInvoked(),
+                    child: TabBar(
+                      splashBorderRadius: borderRadius,
+                      controller: _tabController,
+                      dividerColor: Colors.transparent,
+                      indicator: BoxDecoration(
+                        borderRadius: borderRadius,
+                        gradient: selectedTabGradient,
+                      ),
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      tabs: [
+                        StreamBuilder<int>(
+                          stream: appDatabase.qubeItemsCount(),
+                          builder: (_, snapshot) => QubeListTab(
+                            label: step1Label,
+                            countColor: Colors.black.withOpacity(isStep1 ? 1 : unselectedTabOpacity),
+                            count: snapshot.data ?? 0,
+                          ),
+                        ),
+                        AnimatedOpacity(
+                          duration: kThemeAnimationDuration,
+                          opacity: !isStep1 ? 1 : unselectedTabOpacity,
+                          child: QubeListTab(
+                            label: step2Label,
+                            count: !isStep1 ? 1 : 0,
+                          ),
+                        ),
+                      ],
                     ),
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    tabs: [
-                      StreamBuilder<int>(
-                        stream: appDatabase.qubeItemsCount(),
-                        builder: (_, snapshot) => QubeListTab(
-                          label: step1Label,
-                          countColor: Colors.black.withOpacity(isStep1 ? 1 : unselectedTabOpacity),
-                          count: snapshot.data ?? 0,
-                        ),
-                      ),
-                      AnimatedOpacity(
-                        duration: kThemeAnimationDuration,
-                        opacity: !isStep1 ? 1 : unselectedTabOpacity,
-                        child: QubeListTab(
-                          label: step2Label,
-                          count: !isStep1 ? 1 : 0,
-                        ),
-                      ),
-                    ],
                   ),
                 );
               },
