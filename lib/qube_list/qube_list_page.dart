@@ -63,7 +63,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
                       dividerColor: Colors.transparent,
                       indicator: BoxDecoration(
                         borderRadius: borderRadius,
-                        gradient: selectedTabGradient,
+                        gradient: qubeGradient,
                       ),
                       indicatorSize: TabBarIndicatorSize.tab,
                       tabs: [

@@ -1,3 +1,5 @@
+const appTitle = 'QUBE';
+
 // Search Bar
 const searchBarHintText = 'Location or Transaction Number';
 

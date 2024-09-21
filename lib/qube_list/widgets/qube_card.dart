@@ -3,6 +3,7 @@ import 'package:qube_project/database/database.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/utils/styles.dart';
+import 'package:qube_project/widgets/gradient_text.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
 class QubeCard extends StatelessWidget {
@@ -68,15 +69,10 @@ class QubeCard extends StatelessWidget {
             child: Container(
               padding: qubeCardButtonPadding,
               alignment: Alignment.center,
-              child: ShaderMask(
-                blendMode: BlendMode.srcIn,
-                shaderCallback: (bounds) => selectedTabGradient.createShader(
-                  Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-                ),
-                child: Text(
-                  qubeCardButtonLabel,
-                  style: TextStyles.base,
-                ),
+              child: GradientText(
+                linearGradient: qubeGradient,
+                label: qubeCardButtonLabel,
+                style: TextStyles.base,
               ),
             ),
           ),
