@@ -14,12 +14,15 @@ class Home extends StatelessWidget {
       home: SafeArea(
         child: Scaffold(
           backgroundColor: scaffoldBackgroundColor,
-          body: Column(
-            children: [
-              SearchField(),
-              VerticalSpace(space: 12.0),
-              QubeListPage(),
-            ],
+          body: Padding(
+            padding: homePageMargin,
+            child: Column(
+              children: [
+                SearchField(),
+                VerticalSpace(space: 12.0),
+                QubeListPage(),
+              ],
+            ),
           ),
         ),
       ),

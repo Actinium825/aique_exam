@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 const scaffoldBackgroundColor = Color(0xff0e0e0e);
+const homePageMargin = EdgeInsets.symmetric(horizontal: 8.0);
+const buttonColor = Color(0xff3b3b40);
 
 // Search Bar
-const searchBarMargin = EdgeInsets.symmetric(horizontal: 16.0);
 const searchBarHeight = 38.0;
 const searchBarRadius = 1000.0;
 const searchIconSize = 18.0;
@@ -22,9 +23,16 @@ const selectedTabGradient = LinearGradient(
   ],
 );
 const tabBarRadius = 100.0;
-const tabBarBackgroundColor = Color(0xff3b3b40);
 const tabBarPadding = EdgeInsets.all(2.0);
 const tabBarHeight = 44.0;
 const tabBarCount = 2;
 const qubeCountSize = 24.0;
 const unselectedTabOpacity = 0.7;
+
+// Qube Card
+const qubeCardPadding = EdgeInsets.all(20.0);
+const qubeCardRadius = 44.0;
+const qubeCardBackgroundColor = Color(0xff26262B);
+const qubeCardButtonPadding = EdgeInsets.symmetric(vertical: 8.0);
+const qubeCardButtonRadius = 100.0;
+const qubeCardArrowSize = 16.0;
