@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qube_project/database/database.dart';
+import 'package:qube_project/main.dart';
 import 'package:qube_project/qube_list/widgets/qube_list_tab.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
@@ -65,6 +67,28 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
                     child: const QubeListTab(label: step2Label),
                   ),
                 ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                StreamBuilder<List<QubeItem>>(
+                  stream: appDatabase.allIQubeItems(),
+                  builder: (_, snapshot) {
+                    final allQubeItems = [...?snapshot.data];
+                    return ListView.builder(
+                      itemCount: allQubeItems.length,
+                      itemBuilder: (_, index) {
+                        final qubeItem = allQubeItems[index];
+                        return Text(qubeItem.identification);
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(),
               ],
             ),
           ),

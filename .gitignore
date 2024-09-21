@@ -1,5 +1,6 @@
 # Build files
 **/lib/gen
+*.g.dart
 
 # Miscellaneous
 *.class
