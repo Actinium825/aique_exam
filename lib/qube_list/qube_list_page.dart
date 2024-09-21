@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:qube_project/database/database.dart';
 import 'package:qube_project/main.dart';
+import 'package:qube_project/qube_list/widgets/qube_card.dart';
 import 'package:qube_project/qube_list/widgets/qube_list_tab.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
+import 'package:qube_project/utils/styles.dart';
+import 'package:qube_project/widgets/spacings.dart';
 
 class QubeListPage extends StatefulWidget {
   const QubeListPage({super.key});
@@ -37,10 +40,9 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
         children: [
           Container(
             height: tabBarHeight,
-            margin: searchBarMargin,
             padding: tabBarPadding,
             decoration: BoxDecoration(
-              color: tabBarBackgroundColor,
+              color: buttonColor,
               borderRadius: borderRadius,
             ),
             child: TabBar(
@@ -70,6 +72,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
               ],
             ),
           ),
+          const VerticalSpace(space: 32.0),
           Expanded(
             child: TabBarView(
               controller: _tabController,
@@ -81,10 +84,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
                     final allQubeItems = [...?snapshot.data];
                     return ListView.builder(
                       itemCount: allQubeItems.length,
-                      itemBuilder: (_, index) {
-                        final qubeItem = allQubeItems[index];
-                        return Text(qubeItem.identification);
-                      },
+                      itemBuilder: (_, index) => QubeCard(qubeItem: allQubeItems[index]),
                     );
                   },
                 ),
