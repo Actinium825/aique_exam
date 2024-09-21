@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:qube_project/database/database.dart';
 import 'package:qube_project/qube_list/qube_list_page.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/utils/styles.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
-void main() {
+late final AppDatabase appDatabase;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  appDatabase = AppDatabase();
+
+  await appDatabase.insertMockData();
+
   runApp(const MyApp());
 }
 

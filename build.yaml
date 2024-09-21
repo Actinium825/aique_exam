@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      drift_dev:
+        generate_for:
+          exclude:
+            - lib
+          include:
+            - lib/database/*
