@@ -16,24 +16,21 @@ class QubeListPage extends StatefulWidget {
 
 class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderStateMixin {
   late final TabController _tabController;
-  late final ValueNotifier<int> _tabIndexNotifier;
 
   @override
   void initState() {
-    _tabController = TabController(length: tabBarCount, vsync: this)..addListener(_onUpdateTab);
-    _tabIndexNotifier = ValueNotifier(0);
+    _tabController = TabController(length: tabBarCount, vsync: this);
     super.initState();
   }
 
   @override
   void dispose() {
     _tabController.dispose();
-    _tabIndexNotifier.dispose();
     super.dispose();
   }
 
-  /// Update tab index for updating tab style
-  void _onUpdateTab() => _tabIndexNotifier.value = _tabController.index;
+  /// Switch to Step 2 Tab after pressing 'Go To Step 2' on a qube item
+  void _onNavigateToStep2() => _tabController.animateTo(1);
 
   @override
   Widget build(BuildContext context) {
@@ -48,42 +45,42 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
               color: buttonColor,
               borderRadius: borderRadius,
             ),
-            child: TabBar(
-              splashBorderRadius: borderRadius,
-              controller: _tabController,
-              dividerColor: Colors.transparent,
-              indicator: BoxDecoration(
-                borderRadius: borderRadius,
-                gradient: selectedTabGradient,
-              ),
-              indicatorSize: TabBarIndicatorSize.tab,
-              tabs: [
-                StreamBuilder<int>(
-                  stream: appDatabase.qubeItemsCount(),
-                  builder: (_, snapshot) => ValueListenableBuilder<int>(
-                    valueListenable: _tabIndexNotifier,
-                    builder: (_, tabIndex, __) => QubeListTab(
-                      label: step1Label,
-                      countColor: Colors.black.withOpacity(tabIndex == 0 ? 1 : unselectedTabOpacity),
-                      count: snapshot.data ?? 0,
+            child: ListenableBuilder(
+              listenable: _tabController,
+              builder: (_, __) {
+                final isStep1 = _tabController.index == 0;
+                return AbsorbPointer(
+                  absorbing: isStep1,
+                  child: TabBar(
+                    splashBorderRadius: borderRadius,
+                    controller: _tabController,
+                    dividerColor: Colors.transparent,
+                    indicator: BoxDecoration(
+                      borderRadius: borderRadius,
+                      gradient: selectedTabGradient,
                     ),
-                  ),
-                ),
-                ValueListenableBuilder<int>(
-                  valueListenable: _tabIndexNotifier,
-                  builder: (_, tabIndex, __) {
-                    final isSelected = tabIndex == 1;
-                    return AnimatedOpacity(
-                      duration: kThemeAnimationDuration,
-                      opacity: isSelected ? 1 : unselectedTabOpacity,
-                      child: QubeListTab(
-                        label: step2Label,
-                        count: isSelected ? 1 : 0,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    tabs: [
+                      StreamBuilder<int>(
+                        stream: appDatabase.qubeItemsCount(),
+                        builder: (_, snapshot) => QubeListTab(
+                          label: step1Label,
+                          countColor: Colors.black.withOpacity(isStep1 ? 1 : unselectedTabOpacity),
+                          count: snapshot.data ?? 0,
+                        ),
                       ),
-                    );
-                  },
-                ),
-              ],
+                      AnimatedOpacity(
+                        duration: kThemeAnimationDuration,
+                        opacity: !isStep1 ? 1 : unselectedTabOpacity,
+                        child: QubeListTab(
+                          label: step2Label,
+                          count: !isStep1 ? 1 : 0,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
           const VerticalSpace(space: 32.0),
@@ -98,7 +95,10 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
                     final allQubeItems = [...?snapshot.data];
                     return ListView.separated(
                       itemCount: allQubeItems.length,
-                      itemBuilder: (_, index) => QubeCard(qubeItem: allQubeItems[index]),
+                      itemBuilder: (_, index) => QubeCard(
+                        qubeItem: allQubeItems[index],
+                        onPress: _onNavigateToStep2,
+                      ),
                       separatorBuilder: (_, __) => const VerticalSpace(space: 20.0),
                     );
                   },

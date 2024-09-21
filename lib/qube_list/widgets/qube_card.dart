@@ -8,9 +8,11 @@ import 'package:qube_project/widgets/spacings.dart';
 class QubeCard extends StatelessWidget {
   const QubeCard({
     required this.qubeItem,
+    required this.onPress,
     super.key,
   });
 
+  final VoidCallback onPress;
   final QubeItem qubeItem;
 
   @override
@@ -58,8 +60,7 @@ class QubeCard extends StatelessWidget {
           ),
           const VerticalSpace(space: 20.0),
           ElevatedButton(
-            // TODO: Add function
-            onPressed: () {},
+            onPressed: onPress,
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(qubeCardButtonRadius)),
               backgroundColor: buttonColor,
