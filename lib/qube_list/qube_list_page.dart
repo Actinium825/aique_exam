@@ -5,7 +5,6 @@ import 'package:qube_project/qube_list/widgets/qube_card.dart';
 import 'package:qube_project/qube_list/widgets/qube_list_tab.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
-import 'package:qube_project/utils/styles.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
 class QubeListPage extends StatefulWidget {
@@ -57,17 +56,27 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
               tabs: [
                 ListenableBuilder(
                   listenable: _tabController,
-                  builder: (_, __) => QubeListTab(
-                    label: step1Label,
-                    countColor: Colors.black.withOpacity(tabIndex == 0 ? 1 : unselectedTabOpacity),
+                  builder: (_, __) => StreamBuilder<int>(
+                    stream: appDatabase.qubeItemsCount(),
+                    builder: (_, snapshot) => QubeListTab(
+                      label: step1Label,
+                      countColor: Colors.black.withOpacity(tabIndex == 0 ? 1 : unselectedTabOpacity),
+                      count: snapshot.data ?? 0,
+                    ),
                   ),
                 ),
                 ListenableBuilder(
                   listenable: _tabController,
-                  builder: (_, __) => Opacity(
-                    opacity: tabIndex == 1 ? 1 : unselectedTabOpacity,
-                    child: const QubeListTab(label: step2Label),
-                  ),
+                  builder: (_, __) {
+                    final isSelected = tabIndex == 1;
+                    return Opacity(
+                      opacity: isSelected ? 1 : unselectedTabOpacity,
+                      child: QubeListTab(
+                        label: step2Label,
+                        count: isSelected ? 1 : 0,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -82,9 +91,10 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
                   stream: appDatabase.allIQubeItems(),
                   builder: (_, snapshot) {
                     final allQubeItems = [...?snapshot.data];
-                    return ListView.builder(
+                    return ListView.separated(
                       itemCount: allQubeItems.length,
                       itemBuilder: (_, index) => QubeCard(qubeItem: allQubeItems[index]),
+                      separatorBuilder: (_, __) => const VerticalSpace(space: 20.0),
                     );
                   },
                 ),
