@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qube_project/database/database.dart';
-import 'package:qube_project/home.dart';
+import 'package:qube_project/home/home.dart';
 
 late final AppDatabase appDatabase;
 
