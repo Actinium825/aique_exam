@@ -6,10 +6,12 @@ import 'package:qube_project/widgets/spacings.dart';
 class QubeListTab extends StatelessWidget {
   const QubeListTab({
     required this.label,
+    this.countColor = Colors.black,
     super.key,
   });
 
   final String label;
+  final Color countColor;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,10 @@ class QubeListTab extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(label),
+          Text(
+            label,
+            style: TextStyles.base,
+          ),
           const HorizontalSpace(space: 8.0),
           Container(
             height: qubeCountSize,
@@ -25,14 +30,15 @@ class QubeListTab extends StatelessWidget {
             alignment: Alignment.center,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              // TODO: Update color if unselected
               color: Colors.white,
             ),
             child: Text(
               // TODO: Update value
               '0',
-              // TODO: Update color if unselected
-              style: TextStyles.base.copyWith(color: Colors.black),
+              style: TextStyles.semiBold.copyWith(
+                color: countColor,
+                fontSize: 13.5,
+              ),
             ),
           ),
         ],

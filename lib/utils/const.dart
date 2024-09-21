@@ -22,8 +22,9 @@ const selectedTabGradient = LinearGradient(
   ],
 );
 const tabBarRadius = 100.0;
-const tabBarBackgroundColor = Color(0xff26262B);
+const tabBarBackgroundColor = Color(0xff3b3b40);
 const tabBarPadding = EdgeInsets.all(2.0);
 const tabBarHeight = 44.0;
 const tabBarCount = 2;
 const qubeCountSize = 24.0;
+const unselectedTabOpacity = 0.7;
