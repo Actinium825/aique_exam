@@ -16,24 +16,28 @@ class QubeListPage extends StatefulWidget {
 
 class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderStateMixin {
   late final TabController _tabController;
+  late final ValueNotifier<int> _tabIndexNotifier;
 
   @override
   void initState() {
-    _tabController = TabController(length: tabBarCount, vsync: this);
+    _tabController = TabController(length: tabBarCount, vsync: this)..addListener(_onUpdateTab);
+    _tabIndexNotifier = ValueNotifier(0);
     super.initState();
   }
 
   @override
   void dispose() {
     _tabController.dispose();
+    _tabIndexNotifier.dispose();
     super.dispose();
   }
+
+  /// Update tab index for updating tab style
+  void _onUpdateTab() => _tabIndexNotifier.value = _tabController.index;
 
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(tabBarRadius);
-    final tabIndex = _tabController.index;
-
     return Expanded(
       child: Column(
         children: [
@@ -54,22 +58,23 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
               ),
               indicatorSize: TabBarIndicatorSize.tab,
               tabs: [
-                ListenableBuilder(
-                  listenable: _tabController,
-                  builder: (_, __) => StreamBuilder<int>(
-                    stream: appDatabase.qubeItemsCount(),
-                    builder: (_, snapshot) => QubeListTab(
+                StreamBuilder<int>(
+                  stream: appDatabase.qubeItemsCount(),
+                  builder: (_, snapshot) => ValueListenableBuilder<int>(
+                    valueListenable: _tabIndexNotifier,
+                    builder: (_, tabIndex, __) => QubeListTab(
                       label: step1Label,
                       countColor: Colors.black.withOpacity(tabIndex == 0 ? 1 : unselectedTabOpacity),
                       count: snapshot.data ?? 0,
                     ),
                   ),
                 ),
-                ListenableBuilder(
-                  listenable: _tabController,
-                  builder: (_, __) {
+                ValueListenableBuilder<int>(
+                  valueListenable: _tabIndexNotifier,
+                  builder: (_, tabIndex, __) {
                     final isSelected = tabIndex == 1;
-                    return Opacity(
+                    return AnimatedOpacity(
+                      duration: kThemeAnimationDuration,
                       opacity: isSelected ? 1 : unselectedTabOpacity,
                       child: QubeListTab(
                         label: step2Label,
