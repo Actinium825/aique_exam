@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:qube_project/qube_list/qube_list_page.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/utils/styles.dart';
+import 'package:qube_project/widgets/spacings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,11 +23,12 @@ class MyApp extends StatelessWidget {
             children: [
               Container(
                 height: searchBarHeight,
-                padding: searchBarPadding,
+                margin: searchBarMargin,
                 child: TextField(
                   decoration: InputDecoration(
                     prefixIcon: const Icon(
                       Icons.search,
+                      size: searchIconSize,
                       color: Colors.white,
                     ),
                     contentPadding: EdgeInsets.zero,
@@ -40,6 +43,8 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
               ),
+              const VerticalSpace(space: 12.0),
+              const QubeListPage(),
             ],
           ),
         ),

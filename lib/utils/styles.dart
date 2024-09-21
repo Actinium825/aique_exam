@@ -16,4 +16,6 @@ class TextStyles {
   static TextStyle get medium => poppinsStyles.copyWith(fontWeight: FontWeight.w500);
 
   static TextStyle get xxs => regular.copyWith(fontSize: 12.0);
+
+  static TextStyle get base => medium.copyWith(fontSize: 16.0);
 }
