@@ -48,3 +48,4 @@ const qubeCardArrowSize = 16.0;
 const overdueIndicatorOuterSize = 12.0;
 const overdueIndicatorInnerSize = 8.0;
 const overdueIndicatorColor = Color(0xffff4d4d);
+const gradientPointSize = 10.0;

@@ -4,6 +4,7 @@ import 'package:qube_project/database/database.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/utils/styles.dart';
+import 'package:qube_project/widgets/gradient_point.dart';
 import 'package:qube_project/widgets/gradient_text.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
@@ -63,6 +64,8 @@ class QubeCard extends StatelessWidget {
           verticalSpace,
           Row(
             children: [
+              const GradientPoint(),
+              const HorizontalSpace(space: 4.0),
               Text(
                 qubeItem.location,
                 style: TextStyles.xxs,
@@ -74,6 +77,8 @@ class QubeCard extends StatelessWidget {
                 size: qubeCardArrowSize,
               ),
               horizontalSpace,
+              const GradientPoint(isFilled: false),
+              const HorizontalSpace(space: 4.0),
               Text(
                 qubeItem.receiver,
                 style: TextStyles.xxs,
