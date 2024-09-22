@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:qube_project/database/database.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
@@ -20,6 +21,7 @@ class QubeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     const verticalSpace = VerticalSpace(space: 4.0);
     const horizontalSpace = HorizontalSpace(space: 8.0);
+    final isOverdue = qubeItem.deliveryDate.isBefore(DateTime.now());
 
     return Container(
       padding: qubeCardPadding,
@@ -30,9 +32,28 @@ class QubeCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            qubeItem.time,
-            style: TextStyles.xxs,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                DateFormat.jm().format(qubeItem.deliveryDate),
+                style: TextStyles.xxs,
+              ),
+              if (isOverdue)
+                CircleAvatar(
+                  radius: overdueIndicatorOuterSize,
+                  backgroundColor: overdueIndicatorColor.withOpacity(0.2),
+                  child: const CircleAvatar(
+                    backgroundColor: overdueIndicatorColor,
+                    radius: overdueIndicatorInnerSize,
+                    child: Icon(
+                      Icons.priority_high,
+                      size: overdueIndicatorOuterSize,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+            ],
           ),
           verticalSpace,
           Text(
