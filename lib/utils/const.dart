@@ -34,8 +34,9 @@ const tabBarRadius = 100.0;
 const tabBarPadding = EdgeInsets.all(2.0);
 const tabBarHeight = 44.0;
 const tabBarCount = 2;
-const qubeCountSize = 24.0;
+const qubeCountRadius = 12.0;
 const unselectedTabOpacity = 0.7;
+const dateIndicatorPadding = EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0);
 
 // Qube Card
 const qubeCardPadding = EdgeInsets.all(20.0);
