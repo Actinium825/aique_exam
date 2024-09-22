@@ -1,9 +1,11 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:qube_project/database/database.dart';
 import 'package:qube_project/main.dart';
 import 'package:qube_project/qube_list/widgets/date_indicator.dart';
 import 'package:qube_project/qube_list/widgets/qube_card.dart';
+import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
 class QubeList extends StatelessWidget {
@@ -20,7 +22,7 @@ class QubeList extends StatelessWidget {
       stream: appDatabase.allIQubeItems(),
       builder: (_, snapshot) {
         final allQubeItems = [...?snapshot.data];
-        final groupedQubeItems = allQubeItems.groupBy((qubeItem) => qubeItem.date).toList();
+        final groupedQubeItems = allQubeItems.groupBy((qubeItem) => DateUtils.dateOnly(qubeItem.deliveryDate)).toList();
 
         return ListView.separated(
           itemCount: groupedQubeItems.length,
@@ -31,7 +33,7 @@ class QubeList extends StatelessWidget {
 
             return Column(
               children: [
-                DateIndicator(date: qubeItemEntry.first),
+                DateIndicator(date: DateFormat(dateIndicatorFormat).format(qubeItemEntry.first)),
                 const VerticalSpace(space: 16.0),
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),

@@ -6,6 +6,7 @@ const searchBarHintText = 'Location or Transaction Number';
 // Qube List Page
 const step1Label = 'Step 1';
 const step2Label = 'Step 2';
+const dateIndicatorFormat = 'MMMM d, yyyy';
 
 // Qube Card
 const qubeCardButtonLabel = 'Go to $step2Label';

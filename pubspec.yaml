@@ -13,6 +13,7 @@ dependencies:
   dartx: ^1.2.0
   drift: ^2.20.2
   drift_flutter: ^0.1.0
+  intl: any
 
 dev_dependencies:
   flutter_test:
