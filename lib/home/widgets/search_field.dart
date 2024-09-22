@@ -8,6 +8,7 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final border = OutlineInputBorder(borderRadius: BorderRadius.circular(searchBarRadius));
     return SizedBox(
       height: searchBarHeight,
       child: TextField(
@@ -20,12 +21,10 @@ class SearchField extends StatelessWidget {
           contentPadding: EdgeInsets.zero,
           alignLabelWithHint: false,
           floatingLabelBehavior: FloatingLabelBehavior.never,
-          labelText: searchBarHintText,
-          labelStyle: TextStyles.xxs,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(searchBarRadius),
-            borderSide: const BorderSide(color: Colors.white10),
-          ),
+          hintText: searchBarHintText,
+          hintStyle: TextStyles.xxs,
+          border: border.copyWith(borderSide: const BorderSide(color: Colors.white10)),
+          focusedBorder: border.copyWith(borderSide: const BorderSide(color: Colors.white)),
         ),
       ),
     );
