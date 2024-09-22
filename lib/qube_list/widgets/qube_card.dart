@@ -4,8 +4,8 @@ import 'package:qube_project/database/database.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/utils/styles.dart';
+import 'package:qube_project/widgets/custom_elavated_button.dart';
 import 'package:qube_project/widgets/gradient_point.dart';
-import 'package:qube_project/widgets/gradient_text.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
 class QubeCard extends StatelessWidget {
@@ -86,21 +86,9 @@ class QubeCard extends StatelessWidget {
             ],
           ),
           const VerticalSpace(space: 20.0),
-          ElevatedButton(
-            onPressed: onPress,
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(qubeCardButtonRadius)),
-              backgroundColor: buttonColor,
-            ),
-            child: Container(
-              padding: qubeCardButtonPadding,
-              alignment: Alignment.center,
-              child: GradientText(
-                linearGradient: qubeGradient,
-                label: qubeCardButtonLabel,
-                style: TextStyles.base,
-              ),
-            ),
+          CustomElevatedButton(
+            label: qubeCardButtonLabel,
+            onPress: onPress,
           ),
         ],
       ),

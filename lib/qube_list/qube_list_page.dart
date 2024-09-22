@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:qube_project/database/database.dart';
 import 'package:qube_project/qube_list/widgets/qube_list.dart';
 import 'package:qube_project/qube_list/widgets/qube_list_tab.dart';
+import 'package:qube_project/qube_list/widgets/step_2_tab.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
@@ -13,21 +15,28 @@ class QubeListPage extends StatefulWidget {
 
 class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderStateMixin {
   late final TabController _tabController;
+  late final ValueNotifier<QubeItem?> _selectedQubeNotifier;
 
   @override
   void initState() {
     _tabController = TabController(length: tabBarCount, vsync: this);
+    _selectedQubeNotifier = ValueNotifier(null);
     super.initState();
   }
 
   @override
   void dispose() {
+    _selectedQubeNotifier.dispose();
     _tabController.dispose();
     super.dispose();
   }
 
   /// Switch to Step 2 Tab after pressing 'Go To Step 2' on a qube item
-  void _onNavigateToStep2() => _tabController.animateTo(1);
+  /// Sets the provided [qubeItem] as the selected to show in Step 2
+  void _onSelectQube(QubeItem qubeItem) {
+    _tabController.animateTo(1);
+    _selectedQubeNotifier.value = qubeItem;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +50,8 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
               controller: _tabController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                QubeList(onNavigateToStep2: _onNavigateToStep2),
-                const SizedBox(),
+                QubeList(onSelectQube: _onSelectQube),
+                Step2Tab(selectedQubeNotifier: _selectedQubeNotifier),
               ],
             ),
           ),
