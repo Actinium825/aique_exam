@@ -49,3 +49,9 @@ const overdueIndicatorOuterSize = 12.0;
 const overdueIndicatorInnerSize = 8.0;
 const overdueIndicatorColor = Color(0xffff4d4d);
 const gradientPointSize = 10.0;
+
+// Step 2 Tab
+const detailsCardHeight = 40.0;
+const detailsCardRadius = 10.0;
+const detailsCardBorderWidth = 0.5;
+const detailsCardPrefixPadding = EdgeInsets.only(left: 8.0, right: 4.0);

@@ -14,7 +14,7 @@ class QubeList extends StatelessWidget {
     super.key,
   });
 
-  final VoidCallback onNavigateToStep2;
+  final ValueChanged<QubeItem> onNavigateToStep2;
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,13 @@ class QubeList extends StatelessWidget {
                   itemCount: qubeItems.length,
                   shrinkWrap: true,
                   separatorBuilder: (_, __) => const VerticalSpace(space: 20.0),
-                  itemBuilder: (_, itemIndex) => QubeCard(
-                    qubeItem: qubeItems[itemIndex],
-                    onPress: onNavigateToStep2,
-                  ),
+                  itemBuilder: (_, itemIndex) {
+                    final qubeItem = qubeItems[itemIndex];
+                    return QubeCard(
+                      qubeItem: qubeItem,
+                      onPress: () => onNavigateToStep2(qubeItem),
+                    );
+                  },
                 ),
               ],
             );
