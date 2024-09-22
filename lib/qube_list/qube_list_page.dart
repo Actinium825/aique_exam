@@ -33,7 +33,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
 
   /// Switch to Step 2 Tab after pressing 'Go To Step 2' on a qube item
   /// Sets the provided [qubeItem] as the selected to show in Step 2
-  void _onNavigateToStep2(QubeItem qubeItem) {
+  void _onSelectQube(QubeItem qubeItem) {
     _tabController.animateTo(1);
     _selectedQubeNotifier.value = qubeItem;
   }
@@ -50,7 +50,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
               controller: _tabController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                QubeList(onNavigateToStep2: _onNavigateToStep2),
+                QubeList(onSelectQube: _onSelectQube),
                 Step2Tab(selectedQubeNotifier: _selectedQubeNotifier),
               ],
             ),

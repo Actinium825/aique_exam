@@ -10,11 +10,11 @@ import 'package:qube_project/widgets/spacings.dart';
 
 class QubeList extends StatelessWidget {
   const QubeList({
-    required this.onNavigateToStep2,
+    required this.onSelectQube,
     super.key,
   });
 
-  final ValueChanged<QubeItem> onNavigateToStep2;
+  final ValueChanged<QubeItem> onSelectQube;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class QubeList extends StatelessWidget {
                     final qubeItem = qubeItems[itemIndex];
                     return QubeCard(
                       qubeItem: qubeItem,
-                      onPress: () => onNavigateToStep2(qubeItem),
+                      onPress: () => onSelectQube(qubeItem),
                     );
                   },
                 ),
