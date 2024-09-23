@@ -46,6 +46,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  async_redux:
+    dependency: "direct main"
+    description:
+      name: async_redux
+      sha256: "370747b16144f9e412a082ea10dc71f8c75c3ab6a9b865cb5fe40b14090015ef"
+      url: "https://pub.dev"
+    source: hosted
+    version: "23.2.0"
+  async_redux_core:
+    dependency: transitive
+    description:
+      name: async_redux_core
+      sha256: c515e546ac7ccc461bce8bfb9204867d5b9ea4a15c91ae99a8be04e09d7265ed
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -182,6 +198,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  connectivity_plus:
+    dependency: transitive
+    description:
+      name: connectivity_plus
+      sha256: "2056db5241f96cdc0126bd94459fc4cdc13876753768fc7a31c425e50a7177d0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.5"
+  connectivity_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: connectivity_plus_platform_interface
+      sha256: "42657c1715d48b167930d5f34d00222ac100475f73d10162ddf43e714932f204"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   convert:
     dependency: transitive
     description:
@@ -222,6 +254,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  dbus:
+    dependency: transitive
+    description:
+      name: dbus
+      sha256: "365c771ac3b0e58845f39ec6deebc76e3276aa9922b0cc60840712094d9047ac"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.10"
   drift:
     dependency: "direct main"
     description:
@@ -254,6 +294,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  fast_immutable_collections:
+    dependency: transitive
+    description:
+      name: fast_immutable_collections
+      sha256: c3c73f4f989d3302066e4ec94e6ec73b5dc872592d02194f49f1352d64126b8c
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.2.4"
   ffi:
     dependency: transitive
     description:
@@ -309,6 +357,11 @@ packages:
     version: "4.0.0"
   flutter_test:
     dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -376,6 +429,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  i18n_extension_core:
+    dependency: transitive
+    description:
+      name: i18n_extension_core
+      sha256: f45157bcd04d4fd88811e8e7c104a66ffbf77d16a6cf8526197c30cb78cbf1c4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.6"
   image_size_getter:
     dependency: transitive
     description:
@@ -496,6 +557,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  nm:
+    dependency: transitive
+    description:
+      name: nm
+      sha256: "2c9aae4127bdc8993206464fcc063611e0e36e72018696cd9631023a31b24254"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.0"
   package_config:
     dependency: transitive
     description:
@@ -661,6 +730,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  sprintf:
+    dependency: transitive
+    description:
+      name: sprintf
+      sha256: "1fc9ffe69d4df602376b52949af107d8f5703b77cda567c4d7d86a0693120f23"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   sqlite3:
     dependency: transitive
     description:
@@ -797,6 +874,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  weak_map:
+    dependency: transitive
+    description:
+      name: weak_map
+      sha256: "95ca338f0cdf5f0022cc283dfa4d97f6f6b03752f67eca85ebe6d7a679ffe3ed"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   web:
     dependency: transitive
     description:
