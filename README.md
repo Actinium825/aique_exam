@@ -1,5 +1,3 @@
-# qube_project
-
 QUBE Project for AIQUE Exam
 
 - upgrade to latest flutter version
