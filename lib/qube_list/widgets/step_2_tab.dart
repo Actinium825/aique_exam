@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:qube_project/database/database.dart';
 import 'package:qube_project/qube_list/widgets/date_indicator.dart';
-import 'package:qube_project/qube_list/widgets/details_card.dart';
+import 'package:qube_project/qube_list/widgets/details_field.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/utils/styles.dart';
@@ -49,11 +49,17 @@ class Step2Tab extends StatelessWidget {
                   const Form(
                     child: Column(
                       children: [
-                        DetailsCard(hintText: nameHintText),
+                        DetailsField(hintText: nameHintText),
                         VerticalSpace(space: 12.0),
-                        DetailsCard(hintText: emailHintText),
+                        DetailsField(
+                          hintText: emailHintText,
+                          keyboardType: TextInputType.emailAddress,
+                        ),
                         VerticalSpace(space: 12.0),
-                        DetailsCard(hintText: phoneNumberHintText),
+                        DetailsField(
+                          hintText: phoneNumberHintText,
+                          keyboardType: TextInputType.phone,
+                        ),
                       ],
                     ),
                   ),

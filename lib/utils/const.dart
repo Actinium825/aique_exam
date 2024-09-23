@@ -54,4 +54,9 @@ const gradientPointSize = 10.0;
 const detailsCardHeight = 40.0;
 const detailsCardRadius = 10.0;
 const detailsCardBorderWidth = 0.5;
-const detailsCardPrefixPadding = EdgeInsets.only(left: 8.0, right: 4.0);
+const detailsCardPrefixMargin = EdgeInsets.only(left: 8.0, right: 4.0);
+const errorFieldBorderSide = BorderSide(
+  width: detailsCardBorderWidth,
+  color: errorFieldColor,
+);
+const errorFieldColor = Color(0xffff5555);
