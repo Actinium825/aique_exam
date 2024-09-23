@@ -1,5 +1,6 @@
 # Build files
 **/lib/gen
+*.freezed.dart
 *.g.dart
 
 # Miscellaneous

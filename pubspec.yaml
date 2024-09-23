@@ -22,6 +22,7 @@ dev_dependencies:
   drift_dev: ^2.20.3
   flutter_gen_runner: ^5.7.0
   flutter_lints: ^4.0.0
+  freezed: ^2.5.7
 
 flutter:
   uses-material-design: true

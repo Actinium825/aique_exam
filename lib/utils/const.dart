@@ -60,3 +60,4 @@ const errorFieldBorderSide = BorderSide(
   color: errorFieldColor,
 );
 const errorFieldColor = Color(0xffff5555);
+const disabledTextGradient = LinearGradient(colors: [Color(0xff585858), Color(0xff585858)]);

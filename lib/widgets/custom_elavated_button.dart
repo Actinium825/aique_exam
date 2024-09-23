@@ -6,12 +6,12 @@ import 'package:qube_project/widgets/gradient_text.dart';
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
     required this.label,
-    required this.onPress,
+    this.onPress,
     super.key,
   });
 
-  final VoidCallback onPress;
   final String label;
+  final VoidCallback? onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,13 @@ class CustomElevatedButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(qubeCardButtonRadius)),
         backgroundColor: buttonColor,
+        disabledBackgroundColor: buttonColor,
       ),
       child: Container(
         padding: qubeCardButtonPadding,
         alignment: Alignment.center,
         child: GradientText(
-          linearGradient: qubeGradient,
+          linearGradient: onPress == null ? disabledTextGradient : qubeGradient,
           label: label,
           style: TextStyles.base,
         ),
