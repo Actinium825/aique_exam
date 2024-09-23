@@ -37,6 +37,7 @@ const tabBarCount = 2;
 const qubeCountRadius = 12.0;
 const unselectedTabOpacity = 0.7;
 const dateIndicatorPadding = EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0);
+const qubeListTabLoadingOpacity = 0.3;
 
 // Qube Card
 const qubeCardPadding = EdgeInsets.all(20.0);
