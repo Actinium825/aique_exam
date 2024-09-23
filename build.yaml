@@ -15,3 +15,4 @@ targets:
             - lib
           include:
             - lib/models/*
+            - lib/state/app_state.dart
