@@ -26,14 +26,7 @@ class CustomElevatedButton extends StatelessWidget {
         padding: qubeCardButtonPadding,
         alignment: Alignment.center,
         child: GradientText(
-          linearGradient: onPress == null
-              ? const LinearGradient(
-                  colors: [
-                    Color(0xff585858),
-                    Color(0xff585858),
-                  ],
-                )
-              : qubeGradient,
+          linearGradient: onPress == null ? disabledTextGradient : qubeGradient,
           label: label,
           style: TextStyles.base,
         ),
