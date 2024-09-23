@@ -3,16 +3,19 @@ import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/styles.dart';
 import 'package:qube_project/widgets/gradient_point.dart';
 
+// TODO: Set focus border to gradient
 class DetailsField extends StatefulWidget {
   const DetailsField({
     required this.hintText,
     required this.textEditingController,
+    this.isEnabled = true,
     this.keyboardType,
     super.key,
   });
 
   final String hintText;
   final TextEditingController textEditingController;
+  final bool isEnabled;
   final TextInputType? keyboardType;
 
   @override
@@ -48,6 +51,7 @@ class _DetailsFieldState extends State<DetailsField> {
     return SizedBox(
       height: detailsCardHeight,
       child: TextFormField(
+        enabled: widget.isEnabled,
         controller: widget.textEditingController,
         keyboardType: widget.keyboardType,
         style: TextStyles.xxs,
@@ -56,6 +60,7 @@ class _DetailsFieldState extends State<DetailsField> {
           focusedBorder: border,
           errorBorder: errorBorder,
           focusedErrorBorder: errorBorder,
+          disabledBorder: border,
           prefixIcon: ValueListenableBuilder<bool>(
             valueListenable: _isErrorNotifier,
             builder: (_, isError, __) => Container(

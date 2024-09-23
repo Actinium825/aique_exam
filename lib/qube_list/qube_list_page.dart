@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qube_project/database/database.dart';
+import 'package:qube_project/qube_list/step_2/step_2_tab_connector.dart';
 import 'package:qube_project/qube_list/widgets/qube_list.dart';
 import 'package:qube_project/qube_list/widgets/qube_list_tab.dart';
-import 'package:qube_project/qube_list/widgets/step_2_tab.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
@@ -51,7 +51,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 QubeList(onSelectQube: _onSelectQube),
-                Step2Tab(selectedQubeNotifier: _selectedQubeNotifier),
+                Step2TabConnector(selectedQubeNotifier: _selectedQubeNotifier),
               ],
             ),
           ),

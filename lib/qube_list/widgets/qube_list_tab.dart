@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qube_project/main.dart';
-import 'package:qube_project/qube_list/widgets/step_tab_button.dart';
+import 'package:qube_project/qube_list/step_2/widgets/step_tab_button.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
 

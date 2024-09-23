@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:qube_project/database/database.dart';
 import 'package:qube_project/models/qube_details.dart';
 import 'package:qube_project/qube_list/widgets/date_indicator.dart';
-import 'package:qube_project/qube_list/widgets/details_field.dart';
+import 'package:qube_project/qube_list/step_2/widgets/details_field.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/utils/styles.dart';
@@ -13,10 +13,14 @@ import 'package:qube_project/widgets/spacings.dart';
 class Step2Tab extends StatefulWidget {
   const Step2Tab({
     required this.selectedQubeNotifier,
+    required this.isLoading,
+    required this.onDeliver,
     super.key,
   });
 
   final ValueNotifier<QubeItem?> selectedQubeNotifier;
+  final bool isLoading;
+  final VoidCallback onDeliver;
 
   @override
   State<Step2Tab> createState() => _Step2TabState();
@@ -96,18 +100,21 @@ class _Step2TabState extends State<Step2Tab> {
                         DetailsField(
                           hintText: nameHintText,
                           textEditingController: _nameTextController,
+                          isEnabled: !widget.isLoading,
                         ),
                         const VerticalSpace(space: 12.0),
                         DetailsField(
                           hintText: emailHintText,
                           keyboardType: TextInputType.emailAddress,
                           textEditingController: _emailTextController,
+                          isEnabled: !widget.isLoading,
                         ),
                         const VerticalSpace(space: 12.0),
                         DetailsField(
                           hintText: phoneNumberHintText,
                           keyboardType: TextInputType.phone,
                           textEditingController: _phoneTextController,
+                          isEnabled: !widget.isLoading,
                         ),
                       ],
                     ),
@@ -119,9 +126,8 @@ class _Step2TabState extends State<Step2Tab> {
                       final areDetailsFilled =
                           qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
                       return CustomElevatedButton(
-                        label: deliverButtonLabel,
-                        // TODO: Add function
-                        onPress: areDetailsFilled ? () {} : null,
+                        label: widget.isLoading ? postingLabel : deliverButtonLabel,
+                        onPress: widget.isLoading || !areDetailsFilled ? null : widget.onDeliver,
                       );
                     },
                   ),
