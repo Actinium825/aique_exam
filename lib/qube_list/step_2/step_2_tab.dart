@@ -15,12 +15,14 @@ class Step2Tab extends StatefulWidget {
     required this.selectedQubeNotifier,
     required this.isLoading,
     required this.onDeliver,
+    this.isSuccessful,
     super.key,
   });
 
   final ValueNotifier<QubeItem?> selectedQubeNotifier;
   final bool isLoading;
   final VoidCallback onDeliver;
+  final bool? isSuccessful;
 
   @override
   State<Step2Tab> createState() => _Step2TabState();
@@ -28,6 +30,7 @@ class Step2Tab extends StatefulWidget {
 
 class _Step2TabState extends State<Step2Tab> {
   late final GlobalKey<FormState> _formKey;
+  // TODO: Move to app state
   late final ValueNotifier<QubeDetails> _qubeDetailsNotifier;
   late final TextEditingController _nameTextController;
   late final TextEditingController _emailTextController;
@@ -126,7 +129,11 @@ class _Step2TabState extends State<Step2Tab> {
                       final areDetailsFilled =
                           qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
                       return CustomElevatedButton(
-                        label: widget.isLoading ? postingLabel : deliverButtonLabel,
+                        label: widget.isSuccessful == true
+                            ? postedLabel
+                            : widget.isLoading
+                                ? postingLabel
+                                : deliverButtonLabel,
                         onPress: widget.isLoading || !areDetailsFilled ? null : widget.onDeliver,
                       );
                     },

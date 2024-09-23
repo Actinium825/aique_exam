@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:qube_project/state/app_state.dart';
 
@@ -26,5 +28,15 @@ class DeliverAction extends LoadingAction {
   Future<AppState> reduce() async {
     await Future<void>.delayed(const Duration(seconds: 3));
     return state.copyWith(isSuccessful: true);
+  }
+}
+
+/// Reset the details, selected qube, and is successful event on Step 2
+/// Gets called after leaving Step 2 Tab
+class ResetDetailsAction extends ReduxAction<AppState> {
+  @override
+  AppState reduce() {
+    // TODO: Add resetting of selected qube and details
+    return state.copyWith(isSuccessful: null);
   }
 }
