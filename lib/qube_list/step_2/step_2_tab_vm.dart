@@ -10,6 +10,7 @@ class Step2TabVmFactory extends VmFactory<AppState, Step2TabConnector, Step2TabV
     return Step2TabVM(
       isLoading: state.wait.isWaiting(DeliverAction.waitKey),
       onDeliver: _onDeliver,
+      isSuccessful: state.isSuccessful,
     );
   }
 
@@ -19,9 +20,16 @@ class Step2TabVmFactory extends VmFactory<AppState, Step2TabConnector, Step2TabV
 class Step2TabVM extends Vm {
   final bool isLoading;
   final VoidCallback onDeliver;
+  final bool? isSuccessful;
 
   Step2TabVM({
     required this.isLoading,
     required this.onDeliver,
-  }) : super(equals: [isLoading]);
+    required this.isSuccessful,
+  }) : super(
+          equals: [
+            isLoading,
+            isSuccessful,
+          ],
+        );
 }
