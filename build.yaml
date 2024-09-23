@@ -7,3 +7,11 @@ targets:
             - lib
           include:
             - lib/database/*
+
+      freezed:
+        enabled: true
+        generate_for:
+          exclude:
+            - lib
+          include:
+            - lib/models/*

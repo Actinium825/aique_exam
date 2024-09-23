@@ -6,11 +6,13 @@ import 'package:qube_project/widgets/gradient_point.dart';
 class DetailsField extends StatefulWidget {
   const DetailsField({
     required this.hintText,
+    required this.textEditingController,
     this.keyboardType,
     super.key,
   });
 
   final String hintText;
+  final TextEditingController textEditingController;
   final TextInputType? keyboardType;
 
   @override
@@ -46,6 +48,7 @@ class _DetailsFieldState extends State<DetailsField> {
     return SizedBox(
       height: detailsCardHeight,
       child: TextFormField(
+        controller: widget.textEditingController,
         keyboardType: widget.keyboardType,
         style: TextStyles.xxs,
         decoration: InputDecoration(
