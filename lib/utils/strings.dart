@@ -17,3 +17,4 @@ const nameHintText = 'Enter name';
 const emailHintText = 'Enter e-mail';
 const phoneNumberHintText = 'Enter phone number';
 const deliverButtonLabel = 'Deliver';
+const postingLabel = 'Posting';

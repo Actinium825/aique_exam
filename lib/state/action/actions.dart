@@ -14,3 +14,17 @@ abstract class LoadingAction extends ReduxAction<AppState> {
   void after() => dispatch(WaitAction.remove(actionKey));
 }
 
+/// Deliver the qube
+/// Mocks a delay
+/// Set the state's is successful if so
+class DeliverAction extends LoadingAction {
+  DeliverAction() : super(actionKey: waitKey);
+
+  static const waitKey = 'deliver-action';
+
+  @override
+  Future<AppState> reduce() async {
+    await Future<void>.delayed(const Duration(seconds: 3));
+    return state.copyWith(isSuccessful: true);
+  }
+}
