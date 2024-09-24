@@ -7,7 +7,12 @@ import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
 class QubeListPage extends StatefulWidget {
-  const QubeListPage({super.key});
+  const QubeListPage({
+    required this.onSelectQube,
+    super.key,
+  });
+
+  final ValueChanged<QubeItem> onSelectQube;
 
   @override
   State<QubeListPage> createState() => _QubeListPageState();
@@ -15,18 +20,15 @@ class QubeListPage extends StatefulWidget {
 
 class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderStateMixin {
   late final TabController _tabController;
-  late final ValueNotifier<QubeItem?> _selectedQubeNotifier;
 
   @override
   void initState() {
     _tabController = TabController(length: tabBarCount, vsync: this);
-    _selectedQubeNotifier = ValueNotifier(null);
     super.initState();
   }
 
   @override
   void dispose() {
-    _selectedQubeNotifier.dispose();
     _tabController.dispose();
     super.dispose();
   }
@@ -35,7 +37,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
   /// Sets the provided [qubeItem] as the selected to show in Step 2
   void _onSelectQube(QubeItem qubeItem) {
     _tabController.animateTo(1);
-    _selectedQubeNotifier.value = qubeItem;
+    widget.onSelectQube(qubeItem);
   }
 
   @override
@@ -51,7 +53,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 QubeList(onSelectQube: _onSelectQube),
-                Step2TabConnector(selectedQubeNotifier: _selectedQubeNotifier),
+                const Step2TabConnector(),
               ],
             ),
           ),
