@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:qube_project/database/database.dart';
+import 'package:qube_project/models/qube_details.dart';
 import 'package:qube_project/state/app_state.dart';
 
 /// Reusable loading page state for actions
@@ -18,7 +19,6 @@ abstract class LoadingAction extends ReduxAction<AppState> {
 }
 
 /// Deliver the qube
-/// Mocks a delay
 /// Set the state's is successful if so
 class DeliverAction extends LoadingAction {
   DeliverAction() : super(actionKey: waitKey);
@@ -27,6 +27,7 @@ class DeliverAction extends LoadingAction {
 
   @override
   Future<AppState> reduce() async {
+    // Mock a delay
     await Future<void>.delayed(const Duration(seconds: 3));
     return state.copyWith(isSuccessful: true);
   }
@@ -36,22 +37,31 @@ class DeliverAction extends LoadingAction {
 /// Gets called after leaving Step 2 Tab
 class ResetDetailsAction extends ReduxAction<AppState> {
   @override
-  AppState reduce() {
-    // TODO: Add resetting of selected qube and details
-    return state.copyWith(
-      isSuccessful: null,
-      selectedQube: null,
-    );
-  }
+  AppState reduce() => state.copyWith(
+        isSuccessful: null,
+        selectedQube: null,
+        qubeDetails: null,
+      );
 }
 
 /// Selects a qube to be shown in Step 2
 /// Gets called when pressing go to step 2 in a qube card
 class SelectQubeAction extends ReduxAction<AppState> {
-  SelectQubeAction({this.selectedQube});
+  SelectQubeAction({required this.selectedQube});
 
   final QubeItem? selectedQube;
 
   @override
   AppState reduce() => state.copyWith(selectedQube: selectedQube);
+}
+
+/// Update the qube details in step 2 card
+/// Gets called when updating either email, phone, or name in the step 2 card
+class UpdateQubeDetailsAction extends ReduxAction<AppState> {
+  UpdateQubeDetailsAction({required this.updatedQubeDetails});
+
+  final QubeDetails? updatedQubeDetails;
+
+  @override
+  AppState reduce() => state.copyWith(qubeDetails: updatedQubeDetails);
 }

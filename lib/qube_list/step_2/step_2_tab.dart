@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:qube_project/database/database.dart';
 import 'package:qube_project/models/qube_details.dart';
+import 'package:qube_project/models/qube_details_form.dart';
 import 'package:qube_project/qube_list/widgets/date_indicator.dart';
 import 'package:qube_project/qube_list/step_2/widgets/details_field.dart';
 import 'package:qube_project/utils/const.dart';
@@ -14,6 +15,8 @@ class Step2Tab extends StatefulWidget {
   const Step2Tab({
     required this.isLoading,
     required this.onDeliver,
+    required this.onUpdateForm,
+    required this.qubeDetails,
     this.isSuccessful,
     this.selectedQube,
     super.key,
@@ -21,6 +24,8 @@ class Step2Tab extends StatefulWidget {
 
   final bool isLoading;
   final VoidCallback onDeliver;
+  final ValueChanged<QubeDetailsForm> onUpdateForm;
+  final QubeDetails qubeDetails;
   final bool? isSuccessful;
   final QubeItem? selectedQube;
 
@@ -30,8 +35,6 @@ class Step2Tab extends StatefulWidget {
 
 class _Step2TabState extends State<Step2Tab> {
   late final GlobalKey<FormState> _formKey;
-  // TODO: Move to app state
-  late final ValueNotifier<QubeDetails> _qubeDetailsNotifier;
   late final TextEditingController _nameTextController;
   late final TextEditingController _emailTextController;
   late final TextEditingController _phoneTextController;
@@ -39,37 +42,30 @@ class _Step2TabState extends State<Step2Tab> {
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
-    _qubeDetailsNotifier = ValueNotifier(const QubeDetails());
-    _nameTextController = TextEditingController()..addListener(_onUpdateName);
-    _emailTextController = TextEditingController()..addListener(_onUpdateEmail);
-    _phoneTextController = TextEditingController()..addListener(_onUpdatePhone);
+    _nameTextController = TextEditingController()
+      ..addListener(() => widget.onUpdateForm(QubeDetailsForm.name(_nameTextController.text)));
+    _emailTextController = TextEditingController()
+      ..addListener(() => widget.onUpdateForm(QubeDetailsForm.email(_emailTextController.text)));
+    _phoneTextController = TextEditingController()
+      ..addListener(() => widget.onUpdateForm(QubeDetailsForm.phone(_phoneTextController.text)));
     super.initState();
   }
 
   @override
   void dispose() {
-    _qubeDetailsNotifier.dispose();
     _nameTextController.dispose();
     _emailTextController.dispose();
     _phoneTextController.dispose();
     super.dispose();
   }
 
-  /// Updates the name text of the inputted details
-  void _onUpdateName() =>
-      _qubeDetailsNotifier.value = _qubeDetailsNotifier.value.copyWith(name: _nameTextController.text);
-
-  /// Updates the email text of the inputted details
-  void _onUpdateEmail() =>
-      _qubeDetailsNotifier.value = _qubeDetailsNotifier.value.copyWith(email: _emailTextController.text);
-
-  /// Updates the phone text of the inputted details
-  void _onUpdatePhone() =>
-      _qubeDetailsNotifier.value = _qubeDetailsNotifier.value.copyWith(phone: _phoneTextController.text);
-
   @override
   Widget build(BuildContext context) {
     final deliveryDate = widget.selectedQube?.deliveryDate ?? DateTime.now();
+    final qubeDetails = widget.qubeDetails;
+    final areDetailsFilled =
+        qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
+
     return Column(
       children: [
         DateIndicator(date: DateFormat(dateIndicatorFormat).format(deliveryDate)),
@@ -120,20 +116,13 @@ class _Step2TabState extends State<Step2Tab> {
                 ),
               ),
               const VerticalSpace(space: 16.0),
-              ValueListenableBuilder<QubeDetails>(
-                valueListenable: _qubeDetailsNotifier,
-                builder: (_, qubeDetails, __) {
-                  final areDetailsFilled =
-                      qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
-                  return CustomElevatedButton(
-                    label: widget.isSuccessful == true
-                        ? postedLabel
-                        : widget.isLoading
-                            ? postingLabel
-                            : deliverButtonLabel,
-                    onPress: widget.isLoading || !areDetailsFilled ? null : widget.onDeliver,
-                  );
-                },
+              CustomElevatedButton(
+                label: widget.isSuccessful == true
+                    ? postedLabel
+                    : widget.isLoading
+                        ? postingLabel
+                        : deliverButtonLabel,
+                onPress: widget.isLoading || !areDetailsFilled ? null : widget.onDeliver,
               ),
             ],
           ),

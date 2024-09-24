@@ -18,6 +18,8 @@ class Step2TabConnector extends StatelessWidget {
         onDeliver: vm.onDeliver,
         isSuccessful: vm.isSuccessful,
         selectedQube: vm.selectedQube,
+        onUpdateForm: vm.onUpdateForm,
+        qubeDetails: vm.qubeDetails,
       ),
     );
   }
