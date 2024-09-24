@@ -38,6 +38,7 @@ class _Step2TabState extends State<Step2Tab> {
   late final TextEditingController _nameTextController;
   late final TextEditingController _emailTextController;
   late final TextEditingController _phoneTextController;
+  late String _emailHintText;
 
   @override
   void initState() {
@@ -48,6 +49,7 @@ class _Step2TabState extends State<Step2Tab> {
       ..addListener(() => widget.onUpdateForm(QubeDetailsForm.email(_emailTextController.text)));
     _phoneTextController = TextEditingController()
       ..addListener(() => widget.onUpdateForm(QubeDetailsForm.phone(_phoneTextController.text)));
+    _emailHintText = emailHintText;
     super.initState();
   }
 
@@ -57,6 +59,19 @@ class _Step2TabState extends State<Step2Tab> {
     _emailTextController.dispose();
     _phoneTextController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(oldWidget) {
+    if (oldWidget.isSuccessful != widget.isSuccessful && widget.isSuccessful == false) _onInvalidEmailFormat();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  /// Shows an invalid email hint text in the email text field if the format is wrong upon delivering
+  /// Resets the email text field value
+  void _onInvalidEmailFormat() {
+    _emailTextController.clear();
+    _emailHintText = invalidEmailHintText;
   }
 
   /// Delivers the qube with the provided details
@@ -70,9 +85,10 @@ class _Step2TabState extends State<Step2Tab> {
   Widget build(BuildContext context) {
     final deliveryDate = widget.selectedQube?.deliveryDate ?? DateTime.now();
     final qubeDetails = widget.qubeDetails;
+    final isDeliverSuccessful = widget.isSuccessful == true;
     final areDetailsFilled =
         qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
-    final isTextFieldEnabled = !widget.isLoading && widget.isSuccessful == null;
+    final isTextFieldEnabled = !widget.isLoading && !isDeliverSuccessful;
 
     return Column(
       children: [
@@ -108,7 +124,7 @@ class _Step2TabState extends State<Step2Tab> {
                     ),
                     const VerticalSpace(space: 12.0),
                     DetailsField(
-                      hintText: emailHintText,
+                      hintText: _emailHintText,
                       keyboardType: TextInputType.emailAddress,
                       textEditingController: _emailTextController,
                       isEnabled: isTextFieldEnabled,
@@ -125,9 +141,9 @@ class _Step2TabState extends State<Step2Tab> {
               ),
               const VerticalSpace(space: 16.0),
               AbsorbPointer(
-                absorbing: widget.isSuccessful != null,
+                absorbing: isDeliverSuccessful,
                 child: CustomElevatedButton(
-                  label: widget.isSuccessful == true
+                  label: isDeliverSuccessful
                       ? postedLabel
                       : widget.isLoading
                           ? postingLabel

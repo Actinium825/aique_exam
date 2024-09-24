@@ -14,6 +14,7 @@ dependencies:
   dartx: ^1.2.0
   drift: ^2.20.2
   drift_flutter: ^0.2.0
+  email_validator: ^3.0.0
   intl: any
 
 dev_dependencies:
