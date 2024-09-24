@@ -9,5 +9,3 @@ Todo:
 - [ ] Initial Loading State
 - [ ] Invalid Email Validator
 - [ ] Focused Text Field Gradient
-- [ ] Qube Logo
-- [ ] Review Workflow
