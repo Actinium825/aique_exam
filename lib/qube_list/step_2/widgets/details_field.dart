@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:qube_project/classes/gradient_border_side.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/styles.dart';
 import 'package:qube_project/widgets/gradient_point.dart';
 
-// TODO: Set focus border to gradient
 class DetailsField extends StatefulWidget {
   const DetailsField({
     required this.hintText,
@@ -56,8 +56,8 @@ class _DetailsFieldState extends State<DetailsField> {
         keyboardType: widget.keyboardType,
         style: TextStyles.xxs,
         decoration: InputDecoration(
-          enabledBorder: border,
-          focusedBorder: border,
+          enabledBorder: widget.textEditingController.text.isEmpty ? border : const GradientBorderSide(),
+          focusedBorder: const GradientBorderSide(),
           errorBorder: errorBorder,
           focusedErrorBorder: errorBorder,
           disabledBorder: border,

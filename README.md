@@ -8,4 +8,3 @@ QUBE Project for AIQUE Exam
 Todo:
 - [ ] Initial Loading State
 - [ ] Invalid Email Validator
-- [ ] Focused Text Field Gradient
