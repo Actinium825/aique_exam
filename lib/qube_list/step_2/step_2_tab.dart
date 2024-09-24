@@ -59,12 +59,20 @@ class _Step2TabState extends State<Step2Tab> {
     super.dispose();
   }
 
+  /// Delivers the qube with the provided details
+  /// Unfocuses the text field
+  void _onPressDeliver() {
+    FocusScope.of(context).unfocus();
+    widget.onDeliver();
+  }
+
   @override
   Widget build(BuildContext context) {
     final deliveryDate = widget.selectedQube?.deliveryDate ?? DateTime.now();
     final qubeDetails = widget.qubeDetails;
     final areDetailsFilled =
         qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
+    final isTextFieldEnabled = !widget.isLoading && widget.isSuccessful == null;
 
     return Column(
       children: [
@@ -96,33 +104,36 @@ class _Step2TabState extends State<Step2Tab> {
                     DetailsField(
                       hintText: nameHintText,
                       textEditingController: _nameTextController,
-                      isEnabled: !widget.isLoading,
+                      isEnabled: isTextFieldEnabled,
                     ),
                     const VerticalSpace(space: 12.0),
                     DetailsField(
                       hintText: emailHintText,
                       keyboardType: TextInputType.emailAddress,
                       textEditingController: _emailTextController,
-                      isEnabled: !widget.isLoading,
+                      isEnabled: isTextFieldEnabled,
                     ),
                     const VerticalSpace(space: 12.0),
                     DetailsField(
                       hintText: phoneNumberHintText,
                       keyboardType: TextInputType.phone,
                       textEditingController: _phoneTextController,
-                      isEnabled: !widget.isLoading,
+                      isEnabled: isTextFieldEnabled,
                     ),
                   ],
                 ),
               ),
               const VerticalSpace(space: 16.0),
-              CustomElevatedButton(
-                label: widget.isSuccessful == true
-                    ? postedLabel
-                    : widget.isLoading
-                        ? postingLabel
-                        : deliverButtonLabel,
-                onPress: widget.isLoading || !areDetailsFilled ? null : widget.onDeliver,
+              AbsorbPointer(
+                absorbing: widget.isSuccessful != null,
+                child: CustomElevatedButton(
+                  label: widget.isSuccessful == true
+                      ? postedLabel
+                      : widget.isLoading
+                          ? postingLabel
+                          : deliverButtonLabel,
+                  onPress: widget.isLoading || !areDetailsFilled ? null : _onPressDeliver,
+                ),
               ),
             ],
           ),
