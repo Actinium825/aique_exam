@@ -3,7 +3,6 @@ import 'package:qube_project/database/database.dart';
 import 'package:qube_project/qube_list/qube_list_tab/qube_list_tab_connector.dart';
 import 'package:qube_project/qube_list/step_2/step_2_tab_connector.dart';
 import 'package:qube_project/qube_list/widgets/qube_list.dart';
-import 'package:qube_project/qube_list/qube_list_tab/qube_list_tab.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
