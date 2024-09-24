@@ -15,17 +15,18 @@ class Step2TabVmFactory extends VmFactory<AppState, Step2TabConnector, Step2TabV
         isSuccessful: state.isSuccessful,
         selectedQube: state.selectedQube,
         onUpdateForm: _onUpdateForm,
-        qubeDetails: state.qubeDetails ?? const QubeDetails(),
+        qubeDetails: _qubeDetails,
       );
+
+  QubeDetails get _qubeDetails => state.qubeDetails ?? const QubeDetails();
 
   void _onDeliver() => dispatch(DeliverAction());
 
   void _onUpdateForm(QubeDetailsForm qubeDetailsForm) {
-    final qubeDetails = state.qubeDetails ?? const QubeDetails();
     final updatedQubeDetails = qubeDetailsForm.when(
-      name: (name) => qubeDetails.copyWith(name: name),
-      email: (email) => qubeDetails.copyWith(email: email),
-      phone: (phone) => qubeDetails.copyWith(phone: phone),
+      name: (name) => _qubeDetails.copyWith(name: name),
+      email: (email) => _qubeDetails.copyWith(email: email),
+      phone: (phone) => _qubeDetails.copyWith(phone: phone),
     );
 
     dispatch(UpdateQubeDetailsAction(updatedQubeDetails: updatedQubeDetails));
