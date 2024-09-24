@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:qube_project/database/database.dart';
 import 'package:qube_project/state/app_state.dart';
 
 /// Reusable loading page state for actions
@@ -37,6 +38,20 @@ class ResetDetailsAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
     // TODO: Add resetting of selected qube and details
-    return state.copyWith(isSuccessful: null);
+    return state.copyWith(
+      isSuccessful: null,
+      selectedQube: null,
+    );
   }
+}
+
+/// Selects a qube to be shown in Step 2
+/// Gets called when pressing go to step 2 in a qube card
+class SelectQubeAction extends ReduxAction<AppState> {
+  SelectQubeAction({this.selectedQube});
+
+  final QubeItem? selectedQube;
+
+  @override
+  AppState reduce() => state.copyWith(selectedQube: selectedQube);
 }

@@ -12,17 +12,17 @@ import 'package:qube_project/widgets/spacings.dart';
 
 class Step2Tab extends StatefulWidget {
   const Step2Tab({
-    required this.selectedQubeNotifier,
     required this.isLoading,
     required this.onDeliver,
     this.isSuccessful,
+    this.selectedQube,
     super.key,
   });
 
-  final ValueNotifier<QubeItem?> selectedQubeNotifier;
   final bool isLoading;
   final VoidCallback onDeliver;
   final bool? isSuccessful;
+  final QubeItem? selectedQube;
 
   @override
   State<Step2Tab> createState() => _Step2TabState();
@@ -69,81 +69,76 @@ class _Step2TabState extends State<Step2Tab> {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<QubeItem?>(
-      valueListenable: widget.selectedQubeNotifier,
-      builder: (_, selectedQube, __) {
-        final deliveryDate = selectedQube?.deliveryDate ?? DateTime.now();
-        return Column(
-          children: [
-            DateIndicator(date: DateFormat(dateIndicatorFormat).format(deliveryDate)),
-            const VerticalSpace(space: 16.0),
-            Container(
-              padding: qubeCardPadding,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(qubeCardRadius),
-                color: qubeCardBackgroundColor,
+    final deliveryDate = widget.selectedQube?.deliveryDate ?? DateTime.now();
+    return Column(
+      children: [
+        DateIndicator(date: DateFormat(dateIndicatorFormat).format(deliveryDate)),
+        const VerticalSpace(space: 16.0),
+        Container(
+          padding: qubeCardPadding,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(qubeCardRadius),
+            color: qubeCardBackgroundColor,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                DateFormat.jm().format(deliveryDate),
+                style: TextStyles.xxs,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    DateFormat.jm().format(deliveryDate),
-                    style: TextStyles.xxs,
-                  ),
-                  const VerticalSpace(space: 4.0),
-                  Text(
-                    enterDetailsHeader,
-                    style: TextStyles.base,
-                  ),
-                  const VerticalSpace(space: 16.0),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        DetailsField(
-                          hintText: nameHintText,
-                          textEditingController: _nameTextController,
-                          isEnabled: !widget.isLoading,
-                        ),
-                        const VerticalSpace(space: 12.0),
-                        DetailsField(
-                          hintText: emailHintText,
-                          keyboardType: TextInputType.emailAddress,
-                          textEditingController: _emailTextController,
-                          isEnabled: !widget.isLoading,
-                        ),
-                        const VerticalSpace(space: 12.0),
-                        DetailsField(
-                          hintText: phoneNumberHintText,
-                          keyboardType: TextInputType.phone,
-                          textEditingController: _phoneTextController,
-                          isEnabled: !widget.isLoading,
-                        ),
-                      ],
+              const VerticalSpace(space: 4.0),
+              Text(
+                enterDetailsHeader,
+                style: TextStyles.base,
+              ),
+              const VerticalSpace(space: 16.0),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    DetailsField(
+                      hintText: nameHintText,
+                      textEditingController: _nameTextController,
+                      isEnabled: !widget.isLoading,
                     ),
-                  ),
-                  const VerticalSpace(space: 16.0),
-                  ValueListenableBuilder<QubeDetails>(
-                    valueListenable: _qubeDetailsNotifier,
-                    builder: (_, qubeDetails, __) {
-                      final areDetailsFilled =
-                          qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
-                      return CustomElevatedButton(
-                        label: widget.isSuccessful == true
-                            ? postedLabel
-                            : widget.isLoading
-                                ? postingLabel
-                                : deliverButtonLabel,
-                        onPress: widget.isLoading || !areDetailsFilled ? null : widget.onDeliver,
-                      );
-                    },
-                  ),
-                ],
+                    const VerticalSpace(space: 12.0),
+                    DetailsField(
+                      hintText: emailHintText,
+                      keyboardType: TextInputType.emailAddress,
+                      textEditingController: _emailTextController,
+                      isEnabled: !widget.isLoading,
+                    ),
+                    const VerticalSpace(space: 12.0),
+                    DetailsField(
+                      hintText: phoneNumberHintText,
+                      keyboardType: TextInputType.phone,
+                      textEditingController: _phoneTextController,
+                      isEnabled: !widget.isLoading,
+                    ),
+                  ],
+                ),
               ),
-            )
-          ],
-        );
-      },
+              const VerticalSpace(space: 16.0),
+              ValueListenableBuilder<QubeDetails>(
+                valueListenable: _qubeDetailsNotifier,
+                builder: (_, qubeDetails, __) {
+                  final areDetailsFilled =
+                      qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
+                  return CustomElevatedButton(
+                    label: widget.isSuccessful == true
+                        ? postedLabel
+                        : widget.isLoading
+                            ? postingLabel
+                            : deliverButtonLabel,
+                    onPress: widget.isLoading || !areDetailsFilled ? null : widget.onDeliver,
+                  );
+                },
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }
