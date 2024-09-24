@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:qube_project/database/database.dart';
 import 'package:qube_project/models/qube_details.dart';
 import 'package:qube_project/state/app_state.dart';
@@ -19,7 +20,7 @@ abstract class LoadingAction extends ReduxAction<AppState> {
 }
 
 /// Deliver the qube
-/// Set the state's is successful if so
+/// Set the state's is successful if email is valid
 class DeliverAction extends LoadingAction {
   DeliverAction() : super(actionKey: waitKey);
 
@@ -29,7 +30,8 @@ class DeliverAction extends LoadingAction {
   Future<AppState> reduce() async {
     // Mock a delay
     await Future<void>.delayed(const Duration(seconds: 3));
-    return state.copyWith(isSuccessful: true);
+    final isEmailValid = EmailValidator.validate(state.qubeDetails?.email ?? '');
+    return state.copyWith(isSuccessful: isEmailValid);
   }
 }
 
