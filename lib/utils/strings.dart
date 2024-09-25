@@ -10,6 +10,7 @@ const dateIndicatorFormat = 'MMMM d, yyyy';
 
 // Qube Card
 const qubeCardButtonLabel = 'Go to $step2Label';
+const collectButtonLabel = 'Collect';
 
 // Step 2 Tab
 const enterDetailsHeader = 'Enter details';

@@ -5,11 +5,13 @@ import 'package:shimmer/shimmer.dart';
 class LoadingShimmer extends StatelessWidget {
   const LoadingShimmer({
     this.height = 24,
+    this.radius = loadingShimmerRadius,
     this.width,
     super.key,
   });
 
   final double height;
+  final double radius;
   final double? width;
 
   @override
@@ -20,7 +22,7 @@ class LoadingShimmer extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(loadingShimmerRadius),
+          borderRadius: BorderRadius.circular(radius),
           color: Colors.black,
         ),
       ),
