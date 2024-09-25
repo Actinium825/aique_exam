@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qube_project/database/database.dart';
-import 'package:qube_project/qube_list/qube_list_tab/qube_list_tab_connector.dart';
+import 'package:qube_project/qube_list/widgets/qube_list_tab.dart';
 import 'package:qube_project/qube_list/step_2/step_2_tab_connector.dart';
 import 'package:qube_project/qube_list/widgets/qube_list.dart';
 import 'package:qube_project/utils/const.dart';
@@ -9,10 +9,12 @@ import 'package:qube_project/widgets/spacings.dart';
 class QubeListPage extends StatefulWidget {
   const QubeListPage({
     required this.onSelectQube,
+    required this.isPosting,
     super.key,
   });
 
   final ValueChanged<QubeItem> onSelectQube;
+  final bool isPosting;
 
   @override
   State<QubeListPage> createState() => _QubeListPageState();
@@ -45,7 +47,10 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
     return Expanded(
       child: Column(
         children: [
-          QubeListTabConnector(tabController: _tabController),
+          QubeListTab(
+            tabController: _tabController,
+            isPosting: widget.isPosting,
+          ),
           const VerticalSpace(space: 32.0),
           Expanded(
             child: TabBarView(
