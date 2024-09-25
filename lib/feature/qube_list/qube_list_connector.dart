@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:qube_project/qube_list/qube_list_page.dart';
-import 'package:qube_project/qube_list/qube_list_vm.dart';
+import 'package:qube_project/feature/qube_list/qube_list_page.dart';
+import 'package:qube_project/feature/qube_list/qube_list_vm.dart';
 import 'package:qube_project/state/app_state.dart';
 
 class QubeListConnector extends StatelessWidget {

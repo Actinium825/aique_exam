@@ -1,5 +1,5 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:qube_project/home/home_connector.dart';
+import 'package:qube_project/feature/home/home_connector.dart';
 import 'package:qube_project/state/action/actions.dart';
 import 'package:qube_project/state/app_state.dart';
 
