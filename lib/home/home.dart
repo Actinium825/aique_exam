@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
                 const VerticalSpace(space: 32.0),
                 HomeAppBar(isGettingList: isGettingList),
                 const VerticalSpace(space: 20.0),
-                const SearchField(),
+                SearchField(isGettingList: isGettingList),
                 const VerticalSpace(space: 12.0),
                 const QubeListConnector(),
               ],

@@ -26,6 +26,7 @@ const homeAppBarPadding = EdgeInsets.symmetric(horizontal: 8.0);
 const searchBarHeight = 38.0;
 const searchBarRadius = 1000.0;
 const searchIconSize = 18.0;
+const disabledSearchOpacity = 0.4;
 
 // Qube List Page
 const tabBarRadius = 100.0;
@@ -36,6 +37,7 @@ const qubeCountRadius = 12.0;
 const unselectedTabOpacity = 0.7;
 const dateIndicatorPadding = EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0);
 const qubeListTabLoadingOpacity = 0.3;
+const qubeListTabShimmerColor = Color(0xff171718);
 
 // Qube Card
 const qubeCardPadding = EdgeInsets.all(20.0);

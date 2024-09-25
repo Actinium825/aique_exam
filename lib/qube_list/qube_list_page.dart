@@ -10,11 +10,13 @@ class QubeListPage extends StatefulWidget {
   const QubeListPage({
     required this.onSelectQube,
     required this.isPosting,
+    required this.isGettingList,
     super.key,
   });
 
   final ValueChanged<QubeItem> onSelectQube;
   final bool isPosting;
+  final bool isGettingList;
 
   @override
   State<QubeListPage> createState() => _QubeListPageState();
@@ -50,6 +52,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
           QubeListTab(
             tabController: _tabController,
             isPosting: widget.isPosting,
+            isGettingList: widget.isGettingList,
           ),
           const VerticalSpace(space: 32.0),
           Expanded(
