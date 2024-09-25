@@ -11,7 +11,10 @@ class QubeListConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, QubeListVM>(
       vm: QubeListVmFactory.new,
-      builder: (_, vm) => QubeListPage(onSelectQube: vm.onSelectQube),
+      builder: (_, vm) => QubeListPage(
+        onSelectQube: vm.onSelectQube,
+        isPosting: vm.isPosting,
+      ),
     );
   }
 }

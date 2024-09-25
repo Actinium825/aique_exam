@@ -7,12 +7,12 @@ import 'package:qube_project/utils/strings.dart';
 class QubeListTab extends StatelessWidget {
   const QubeListTab({
     required this.tabController,
-    required this.isLoading,
+    required this.isPosting,
     super.key,
   });
 
   final TabController tabController;
-  final bool isLoading;
+  final bool isPosting;
 
   /// Navigate back to Step 1 when pressing back while on Step 2
   void _onPopInvoked() => tabController.animateTo(0);
@@ -22,7 +22,7 @@ class QubeListTab extends StatelessWidget {
     final borderRadius = BorderRadius.circular(tabBarRadius);
     return AnimatedOpacity(
       duration: kThemeChangeDuration,
-      opacity: isLoading ? qubeListTabLoadingOpacity : 1,
+      opacity: isPosting ? qubeListTabLoadingOpacity : 1,
       child: Container(
         height: tabBarHeight,
         padding: tabBarPadding,
@@ -35,7 +35,7 @@ class QubeListTab extends StatelessWidget {
           builder: (_, __) {
             final isStep1 = tabController.index == 0;
             return AbsorbPointer(
-              absorbing: isLoading || isStep1,
+              absorbing: isPosting || isStep1,
               child: PopScope(
                 canPop: isStep1,
                 onPopInvokedWithResult: (_, __) => _onPopInvoked(),
