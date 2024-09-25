@@ -6,11 +6,16 @@ import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  const Home({
+    required this.isGettingList,
+    super.key,
+  });
+
+  final bool isGettingList;
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
@@ -19,12 +24,12 @@ class Home extends StatelessWidget {
             padding: homePageMargin,
             child: Column(
               children: [
-                VerticalSpace(space: 32.0),
-                HomeAppBar(),
-                VerticalSpace(space: 20.0),
-                SearchField(),
-                VerticalSpace(space: 12.0),
-                QubeListConnector(),
+                const VerticalSpace(space: 32.0),
+                HomeAppBar(isGettingList: isGettingList),
+                const VerticalSpace(space: 20.0),
+                const SearchField(),
+                const VerticalSpace(space: 12.0),
+                const QubeListConnector(),
               ],
             ),
           ),

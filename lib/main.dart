@@ -2,7 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qube_project/database/database.dart';
-import 'package:qube_project/home/home.dart';
+import 'package:qube_project/home/home_connector.dart';
 import 'package:qube_project/state/app_state.dart';
 
 late final AppDatabase appDatabase;
@@ -20,7 +20,7 @@ void main() async {
         initialState: const AppState(),
         actionObservers: [if (kDebugMode) ConsoleActionObserver<AppState>()],
       ),
-      child: const Home(),
+      child: const HomeConnector(),
     ),
   );
 }
