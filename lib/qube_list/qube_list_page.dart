@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qube_project/database/database.dart';
+import 'package:qube_project/qube_list/widgets/loading_list.dart';
 import 'package:qube_project/qube_list/widgets/qube_list_tab.dart';
 import 'package:qube_project/qube_list/step_2/step_2_tab_connector.dart';
 import 'package:qube_project/qube_list/widgets/qube_list.dart';
@@ -60,7 +61,7 @@ class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderSt
               controller: _tabController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                QubeList(onSelectQube: _onSelectQube),
+                if (widget.isGettingList) const LoadingList() else QubeList(onSelectQube: _onSelectQube),
                 const Step2TabConnector(),
               ],
             ),
