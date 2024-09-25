@@ -5,21 +5,19 @@ const homePageMargin = EdgeInsets.symmetric(horizontal: 8.0);
 const buttonColor = Color(0xff3b3b40);
 const qubeGradient = LinearGradient(
   stops: [0.0, 0.5, 1.0],
-  colors: [
-    Color(0xff50BA84),
-    Color(0xff33B3AA),
-    Color(0xff15ABD0),
-  ],
+  colors: [Color(0xff50BA84), Color(0xff33B3AA), Color(0xff15ABD0)],
 );
+const loadingGradient = LinearGradient(
+  colors: [Color(0xff292929), Color(0xff292929), Colors.black, Color(0xff292929), Color(0xff292929)],
+  stops: [0.0, 0.35, 0.5, 0.65, 1.0],
+);
+const loadingShimmerRadius = 4.0;
 
 // Home App Bar
 const titleGradient = LinearGradient(
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
-  colors: [
-    Color(0xff50BA84),
-    Color(0xff15ABD0),
-  ],
+  colors: [Color(0xff50BA84), Color(0xff15ABD0)],
 );
 const profileIconSize = 22.0;
 const homeAppBarPadding = EdgeInsets.symmetric(horizontal: 8.0);

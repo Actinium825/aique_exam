@@ -67,3 +67,18 @@ class UpdateQubeDetailsAction extends ReduxAction<AppState> {
   @override
   AppState reduce() => state.copyWith(qubeDetails: updatedQubeDetails);
 }
+
+/// Gets the initial list of qube at app start
+/// Gets called on [HomeConnector]
+class GetInitialListAction extends LoadingAction {
+  GetInitialListAction() : super(actionKey: waitKey);
+
+  static const waitKey = 'get-initial-list';
+
+  @override
+  Future<AppState> reduce() async {
+    // Mock a delay
+    await Future<void>.delayed(const Duration(seconds: 3));
+    return state;
+  }
+}
