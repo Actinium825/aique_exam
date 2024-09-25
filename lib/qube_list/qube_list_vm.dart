@@ -10,6 +10,7 @@ class QubeListVmFactory extends VmFactory<AppState, QubeListConnector, QubeListV
   QubeListVM fromStore() => QubeListVM(
         onSelectQube: _onSelectQube,
         isPosting: state.wait.isWaiting(DeliverAction.waitKey),
+        isGettingList: state.wait.isWaiting(GetInitialListAction.waitKey),
       );
 
   void _onSelectQube(QubeItem selectedQube) => dispatch(SelectQubeAction(selectedQube: selectedQube));
@@ -18,9 +19,16 @@ class QubeListVmFactory extends VmFactory<AppState, QubeListConnector, QubeListV
 class QubeListVM extends Vm {
   final ValueChanged<QubeItem> onSelectQube;
   final bool isPosting;
+  final bool isGettingList;
 
   QubeListVM({
     required this.onSelectQube,
     required this.isPosting,
-  }) : super(equals: [isPosting]);
+    required this.isGettingList,
+  }) : super(
+          equals: [
+            isPosting,
+            isGettingList,
+          ],
+        );
 }

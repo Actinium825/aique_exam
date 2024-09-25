@@ -14,6 +14,7 @@ class QubeListConnector extends StatelessWidget {
       builder: (_, vm) => QubeListPage(
         onSelectQube: vm.onSelectQube,
         isPosting: vm.isPosting,
+        isGettingList: vm.isGettingList,
       ),
     );
   }
