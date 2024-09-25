@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qube_project/main.dart';
-import 'package:qube_project/qube_list/step_2/widgets/step_tab_button.dart';
+import 'package:qube_project/feature/qube_list/step_2/widgets/step_tab_button.dart';
 import 'package:qube_project/utils/const.dart';
 import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/widgets/loading_shimmer.dart';
