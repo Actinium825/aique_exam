@@ -5,21 +5,19 @@ const homePageMargin = EdgeInsets.symmetric(horizontal: 8.0);
 const buttonColor = Color(0xff3b3b40);
 const qubeGradient = LinearGradient(
   stops: [0.0, 0.5, 1.0],
-  colors: [
-    Color(0xff50BA84),
-    Color(0xff33B3AA),
-    Color(0xff15ABD0),
-  ],
+  colors: [Color(0xff50BA84), Color(0xff33B3AA), Color(0xff15ABD0)],
 );
+const loadingGradient = LinearGradient(
+  colors: [Color(0xff292929), Color(0xff292929), Colors.black, Color(0xff292929), Color(0xff292929)],
+  stops: [0.0, 0.35, 0.5, 0.65, 1.0],
+);
+const loadingShimmerRadius = 4.0;
 
 // Home App Bar
 const titleGradient = LinearGradient(
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
-  colors: [
-    Color(0xff50BA84),
-    Color(0xff15ABD0),
-  ],
+  colors: [Color(0xff50BA84), Color(0xff15ABD0)],
 );
 const profileIconSize = 22.0;
 const homeAppBarPadding = EdgeInsets.symmetric(horizontal: 8.0);
@@ -28,6 +26,7 @@ const homeAppBarPadding = EdgeInsets.symmetric(horizontal: 8.0);
 const searchBarHeight = 38.0;
 const searchBarRadius = 1000.0;
 const searchIconSize = 18.0;
+const disabledSearchOpacity = 0.4;
 
 // Qube List Page
 const tabBarRadius = 100.0;
@@ -38,6 +37,7 @@ const qubeCountRadius = 12.0;
 const unselectedTabOpacity = 0.7;
 const dateIndicatorPadding = EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0);
 const qubeListTabLoadingOpacity = 0.3;
+const qubeListTabShimmerColor = Color(0xff171718);
 
 // Qube Card
 const qubeCardPadding = EdgeInsets.all(20.0);

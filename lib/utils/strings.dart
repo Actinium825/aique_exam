@@ -10,6 +10,7 @@ const dateIndicatorFormat = 'MMMM d, yyyy';
 
 // Qube Card
 const qubeCardButtonLabel = 'Go to $step2Label';
+const collectButtonLabel = 'Collect';
 
 // Step 2 Tab
 const enterDetailsHeader = 'Enter details';
@@ -19,3 +20,4 @@ const phoneNumberHintText = 'Enter phone number';
 const deliverButtonLabel = 'Deliver';
 const postingLabel = 'Posting';
 const postedLabel = 'Posted!';
+const invalidEmailHintText = 'Invalid email format';

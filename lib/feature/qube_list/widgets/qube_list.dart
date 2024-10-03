@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:qube_project/database/database.dart';
 import 'package:qube_project/main.dart';
-import 'package:qube_project/qube_list/widgets/date_indicator.dart';
-import 'package:qube_project/qube_list/widgets/qube_card.dart';
+import 'package:qube_project/feature/qube_list/widgets/date_indicator.dart';
+import 'package:qube_project/feature/qube_list/widgets/qube_card.dart';
 import 'package:qube_project/utils/strings.dart';
 import 'package:qube_project/widgets/spacings.dart';
 
