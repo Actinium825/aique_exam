@@ -20,10 +20,12 @@
 | ![](/screenshots/loading_state.png) | ![](/screenshots/step_1.png) |
 
 ### Step 2
+<img src="/screenshots/step_2.png" style="height:50%; width:auto" alt="Step 2 Page">
 
-| Step 2 Page                            | Errors                                | Valid                              |
-|----------------------------------------|---------------------------------------|------------------------------------|
-| ![](/screenshots/step_2.png)           | ![](/screenshots/step_2_error.png)    | ![](/screenshots/step_2_valid.png) |
-| Posting                                | Posted                                |
-| -------------------------------------- | ------------------------------------- |
-| ![](/screenshots/step_2_posting.png)   | ![](/screenshots/step_2_posted.png)   |
+| Errors                             | Valid                              | Step 2 Page                  |
+|------------------------------------|------------------------------------|------------------------------|
+| ![](/screenshots/step_2_error.png) | ![](/screenshots/step_2_valid.png) | ![](/screenshots/step_2.png) |
+
+| Posting                              | Posted                              |
+|--------------------------------------|-------------------------------------|
+| ![](/screenshots/step_2_posting.png) | ![](/screenshots/step_2_posted.png) |
