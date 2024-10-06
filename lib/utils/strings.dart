@@ -1,4 +1,5 @@
 const appTitle = 'QUBE';
+const downloadDirectory = '/storage/emulated/0/Download';
 
 // Search Bar
 const searchBarHintText = 'Location or Transaction Number';
