@@ -17,10 +17,10 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SafeArea(
-        child: Scaffold(
-          backgroundColor: scaffoldBackgroundColor,
-          body: Padding(
+      home: Scaffold(
+        backgroundColor: scaffoldBackgroundColor,
+        body: SafeArea(
+          child: Padding(
             padding: homePageMargin,
             child: Column(
               children: [
@@ -30,6 +30,7 @@ class Home extends StatelessWidget {
                 SearchField(isGettingList: isGettingList),
                 const VerticalSpace(space: 12.0),
                 const QubeListConnector(),
+                const VerticalSpace(space: 16.0),
               ],
             ),
           ),
