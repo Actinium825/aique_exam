@@ -25,7 +25,7 @@ dev_dependencies:
   device_preview_screenshot: ^1.0.0
   drift_dev: ^2.20.3
   flutter_gen_runner: ^5.7.0
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
   freezed: ^2.5.7
 
 flutter:
