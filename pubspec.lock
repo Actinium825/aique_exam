@@ -290,26 +290,26 @@ packages:
     dependency: "direct main"
     description:
       name: drift
-      sha256: "5b561ec76fff260e1e0593a29ca0d058a140a4b4dfb11dcc0c3813820cd20200"
+      sha256: df027d168a2985a2e9da900adeba2ab0136f0d84436592cf3cd5135f82c8579c
       url: "https://pub.dev"
     source: hosted
-    version: "2.20.2"
+    version: "2.21.0"
   drift_dev:
     dependency: "direct dev"
     description:
       name: drift_dev
-      sha256: "3ee987578ca2281b5ff91eadd757cd6dd36001458d6e33784f990d67ff38f756"
+      sha256: "623649abe932fc17bd32e578e7e05f7ac5e7dd0b33e6c8669a0634105d1389bf"
       url: "https://pub.dev"
     source: hosted
-    version: "2.20.3"
+    version: "2.21.2"
   drift_flutter:
     dependency: "direct main"
     description:
       name: drift_flutter
-      sha256: c670c947fe17ad149678a43fdbbfdb69321f0c83d315043e34e8ad2729e11f49
+      sha256: fec503e9d408f36bb345f9f6d24bc9d62b7b5f970db49760253d9e8d3acd48d5
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   email_validator:
     dependency: "direct main"
     description:
@@ -875,10 +875,10 @@ packages:
     dependency: transitive
     description:
       name: sqlparser
-      sha256: "852cf80f9e974ac8e1b613758a8aa640215f7701352b66a7f468e95711eb570b"
+      sha256: d77749237609784e337ec36c979d41f6f38a7b279df98622ae23929c8eb954a4
       url: "https://pub.dev"
     source: hosted
-    version: "0.38.1"
+    version: "0.39.2"
   stack_trace:
     dependency: transitive
     description:
