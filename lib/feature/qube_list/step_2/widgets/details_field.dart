@@ -43,7 +43,7 @@ class _DetailsFieldState extends State<DetailsField> {
       borderRadius: BorderRadius.circular(detailsCardRadius),
       borderSide: BorderSide(
         width: detailsCardBorderWidth,
-        color: Colors.white.withOpacity(0.3),
+        color: Colors.white.withValues(alpha: 0.3),
       ),
     );
     final errorBorder = border.copyWith(borderSide: errorFieldBorderSide);

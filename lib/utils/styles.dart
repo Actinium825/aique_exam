@@ -19,7 +19,7 @@ class TextStyles {
 
   static TextStyle get xxs => regular.copyWith(
         fontSize: 12.0,
-        color: Colors.white.withOpacity(0.5),
+        color: Colors.white.withValues(alpha: 0.5),
       );
 
   static TextStyle get base => medium.copyWith(fontSize: 16.0);

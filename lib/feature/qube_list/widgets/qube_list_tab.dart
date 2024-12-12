@@ -58,7 +58,7 @@ class QubeListTab extends StatelessWidget {
                             stream: appDatabase.qubeItemsCount(),
                             builder: (_, snapshot) => StepTabButton(
                               label: step1Label,
-                              countColor: Colors.black.withOpacity(isStep1 ? 1 : unselectedTabOpacity),
+                              countColor: Colors.black.withValues(alpha: isStep1 ? 1 : unselectedTabOpacity),
                               count: snapshot.data ?? 0,
                             ),
                           ),
