@@ -9,11 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  async_redux: ^23.2.0
+  async_redux: ^24.0.2
   cupertino_icons: ^1.0.8
   dartx: ^1.2.0
-  drift: ^2.20.2
-  drift_flutter: ^0.2.0
+  drift: ^2.22.1
+  drift_flutter: ^0.2.2
   email_validator: ^3.0.0
   intl: any
   shimmer: ^3.0.0
@@ -21,11 +21,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.4.12
+  build_runner: ^2.4.13
   device_preview_screenshot: ^1.0.0
-  drift_dev: ^2.20.3
-  flutter_gen_runner: ^5.7.0
-  flutter_lints: ^4.0.0
+  drift_dev: ^2.22.1
+  flutter_gen_runner: ^5.8.0
+  flutter_lints: ^5.0.0
   freezed: ^2.5.7
 
 flutter:

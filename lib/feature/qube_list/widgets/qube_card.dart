@@ -43,7 +43,7 @@ class QubeCard extends StatelessWidget {
               if (isOverdue)
                 CircleAvatar(
                   radius: overdueIndicatorOuterSize,
-                  backgroundColor: overdueIndicatorColor.withOpacity(0.2),
+                  backgroundColor: overdueIndicatorColor.withValues(alpha: 0.2),
                   child: const CircleAvatar(
                     backgroundColor: overdueIndicatorColor,
                     radius: overdueIndicatorInnerSize,
