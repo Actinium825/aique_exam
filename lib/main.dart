@@ -25,10 +25,9 @@ void main() async {
         actionObservers: [if (kDebugMode) ConsoleActionObserver<AppState>()],
       ),
       child: DevicePreview(
-        tools: [
-          ...DevicePreview.defaultTools,
+        tools: DevicePreview.defaultTools.followedBy([
           DevicePreviewScreenshot(onScreenshot: screenshotAsFiles(Directory(downloadDirectory))),
-        ],
+        ]).toList(),
         builder: (_) => const HomeConnector(),
       ),
     ),
