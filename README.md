@@ -2,6 +2,11 @@
 
 A simple Flutter UI from Figma for a job exam, using Async Redux for state management and Drift for database
 
+## Contents
+- [Steps to run](#steps-to-run)
+- [Features](#features)
+- [Screenshots](#screenshots)
+
 ## Steps to run
 1. Update to latest Flutter version
 2. Run `flutter pub get`
