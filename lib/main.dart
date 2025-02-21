@@ -25,6 +25,7 @@ void main() async {
         actionObservers: [if (kDebugMode) ConsoleActionObserver<AppState>()],
       ),
       child: DevicePreview(
+        enabled: false,
         tools: DevicePreview.defaultTools.followedBy([
           DevicePreviewScreenshot(onScreenshot: screenshotAsFiles(Directory(downloadDirectory))),
         ]).toList(),
