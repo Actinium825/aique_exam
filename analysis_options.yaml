@@ -49,3 +49,5 @@ linter:
     use_named_constants: true
     use_string_buffers: true
     use_super_parameters: true
+    omit_obvious_property_types: true
+    strict_top_level_inference: true

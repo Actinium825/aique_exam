@@ -1,9 +1,9 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:qube_project/database/database.dart';
+import 'package:qube_project/feature/qube_list/step_2/step_2_tab_connector.dart';
 import 'package:qube_project/models/qube_details.dart';
 import 'package:qube_project/models/qube_details_form.dart';
-import 'package:qube_project/feature/qube_list/step_2/step_2_tab_connector.dart';
 import 'package:qube_project/state/action/actions.dart';
 import 'package:qube_project/state/app_state.dart';
 

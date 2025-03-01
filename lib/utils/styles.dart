@@ -6,7 +6,7 @@ import 'package:qube_project/gen/fonts.gen.dart';
 /// More specific variants can be created on the fly using 'style.copyWith()'.
 class TextStyles {
   /// Declare a base style family
-  static const TextStyle poppinsStyles = TextStyle(
+  static const poppinsStyles = TextStyle(
     fontFamily: FontFamily.poppins,
     color: Colors.white,
   );
